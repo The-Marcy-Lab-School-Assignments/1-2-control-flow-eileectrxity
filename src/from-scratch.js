@@ -115,8 +115,39 @@ console.log(rounder(1.0, 'down')); // 1
 console.log(rounder(3.2, 'honest')); // 3
 console.log(rounder(3.6, 'honest')); // 4
 
-const fizzBuzzish = () => {
+/*Question 5: a function that takes a single argument: an integer, num; should log a message in the following situations:
+  number is divisible by 3 - 'fizz'
+  number is divisible by 5 - 'buzz'
+  number is divisible by both 3 and 5 - 'fizzBuzz!'
+  number is none of those - just log the number
+*/
+//using if else statements with explicit conditions provided
+const fizzBuzzish = (num) => {
+  if (num % 3 === 0 && num % 5 !== 0) {
+    return "Fizz";
+  } else if (num % 5 === 0 && num % 3 !== 0) {
+    return "Buzz";
+  } else if (num % 3 === 0 && num % 5 === 0) {
+    return "FizzBuzz";
+  } else {
+    return num
+  }
 };
+
+// //alt solution a: first try - not as good as solution above
+// const fizzBuzzish = (num) => {
+//   if (num % 3 === 0 && num % 5 === 0) {
+//     return "FizzBuzz";
+//   } else if (num % 3 === 0) {
+//     return "Fizz";
+//   } else if (num % 5 === 0) {
+//     return "Buzz";
+//   } else return num;
+// };
+
+console.log(fizzBuzzish(15)); //returns FizzBuzz
+console.log(fizzBuzzish(3)); //returns Fizz
+console.log(fizzBuzzish(32)); //returns Buzz
 
 module.exports = {
   measureRain,
