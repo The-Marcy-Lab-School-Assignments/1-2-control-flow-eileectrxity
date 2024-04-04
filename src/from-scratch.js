@@ -94,8 +94,26 @@ console.log(funTypes(NaN)); // "Well, now you're just showing off."
 console.log(funTypes([1,2])); // "I order you to be indexed."
 console.log(funTypes(3)); // "That's a good number."
 
-const rounder = () => {
+/*Question 4: a function rounder that takes two arguments: a float, float and a string, roundingSetting. roundingSetting could be only one of 3 values up, down, or honest. it should RETURN an integer based off the following value of roundingSetting:
+  up - the float rounded up
+  down - the float rounded down
+  honest - the float rounded up or down depending on the rounding rules (< .5 round down, >= .5 round up)
+*/
+
+const rounder = (float, roundingSetting) => {
+  if (roundingSetting === 'up') {
+    return Math.ceil(float);
+  } else if (roundingSetting === 'down') {
+    return Math.floor(float);
+  } else if (roundingSetting === 'honest') {
+    return Math.round(float);
+  }
+  else return "Only round 'up', 'down', or 'honest' please c:";
 };
+console.log(rounder(5.7, 'up')); // 6
+console.log(rounder(1.0, 'down')); // 1
+console.log(rounder(3.2, 'honest')); // 3
+console.log(rounder(3.6, 'honest')); // 4
 
 const fizzBuzzish = () => {
 };
