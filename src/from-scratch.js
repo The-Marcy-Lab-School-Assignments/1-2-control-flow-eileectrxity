@@ -59,8 +59,40 @@ console.log(happyBirthdayPet('snake', 3)); // "Hiss hiss!"
 console.log(happyBirthdayPet('cat', 2)); // "Mew mew!"
 console.log(happyBirthdayPet('dog', 12)); // "Boof!"
 
-const funTypes = () => {
+/*Question 3: a function that takes an argument, jsType. the type could be one of the following: a string, a number, a boolean, undefined, null, an object, an array, or NaN; should log a message in the following situations:
+  any string - "That's just some text."
+  any number - "That's a good number."
+  a boolean - "To bool, or not to bool?"
+  undefined - "Nothing, but I didn't set that."
+  null - "Nothing, and I did set that."
+  an object - "Anybody got the key?"
+  an array - "I order you to be indexed."
+  NaN - "Well, now you're just showing off."
+*/
+const funTypes = (jsType) => {
+  // console.log(jsType) //testing for control flow understand
+  if (typeof jsType === '') {
+    return 'That\'s just some text.'; //practicing backticks
+  } else if (Number.isNaN(jsType)) { //has to be checked before number
+    return "Well, now you're just showing off.";
+  } else if (typeof jsType === 'number') {
+    return "That's a good number.";
+  } else if (typeof jsType === 'boolean') {
+    return "To bool, or not to bool?";
+  } else if (typeof jsType === 'undefined') {
+    return "Nothing, but I didn't set that.";
+  } else if (jsType === null) {
+    return "Nothing, and I did set that.";
+  } else if (Array.isArray(jsType)) { //array check should be before object check as an array is considered an object; ([]) doesn't work as it's considered an oject
+    return "I order you to be indexed.";
+  } else if (typeof jsType === 'object') {
+    return "Anybody got the key?";
+  };
 };
+
+console.log(funTypes(NaN)); // "Well, now you're just showing off."
+console.log(funTypes([1,2])); // "I order you to be indexed."
+console.log(funTypes(3)); // "That's a good number."
 
 const rounder = () => {
 };
