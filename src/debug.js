@@ -70,20 +70,43 @@ funkoPopAddictionLevel(10) // 'Only a few? Keep having fun!'
 funkoPopAddictionLevel(30) // 'You need help!'
 funkoPopAddictionLevel(31) // 'You need an intervention!!!'
 
+//Question 10: original function- evaluates to a ReferenceError stating that var weatherReport is not defined. error occurs because weatherReport vars are declared with const, which prevents mutability and limits their scope to the block they are defined in. let should be used instead to allow mutability and access outside of the block
+// const getWeatherReport = (temperature) => {
+//   if (temperature > 90) {
+//     const weatherReport = "It's hot and gross out.";
+//     console.log(weatherReport);
+//   } else if (temperature > 70) {
+//     const weatherReport = "At least it's a dry heat.";
+//     console.log(weatherReport);
+//   } else if (temperature < 32) {
+//     const weatherReport = "Wow, it's cold out.";
+//     console.log(weatherReport);
+//   }
+//   console.log("And that's your report!");
+//   return weatherReport; //can't fetch weatherReport var due to lack of block scope outside the else if statements
+// };
+
+//fixed function to compile a weatherReport string without changing its core functionality and added a missing condition
 const getWeatherReport = (temperature) => {
+  let weatherReport = '' //initialized var with let for mutability and block scope
   if (temperature > 90) {
-    const weatherReport = "It's hot and gross out.";
+    weatherReport = "It's hot and gross out.";
     console.log(weatherReport);
   } else if (temperature > 70) {
-    const weatherReport = "At least it's a dry heat.";
+    weatherReport = "At least it's a dry heat.";
     console.log(weatherReport);
-  } else if (temperature < 32) {
-    const weatherReport = "Wow, it's cold out.";
+  } else if (temperature >= 32) { //added the missing condition per the debug.js test string expectation
+    weatherReport = "It's not too bad!";
+    console.log(weatherReport);
+ } else if (temperature < 32) {
+    weatherReport = "Wow, it's cold out.";
     console.log(weatherReport);
   }
   console.log("And that's your report!");
   return weatherReport;
 };
+
+console.log(getWeatherReport(32)); // 'It's not too bad!'
 
 const returnPositiveNegativeZero = (num) => {
   return num < 0
