@@ -36,19 +36,39 @@ const coolnessGauge = (numOfFridges) => {
 
 console.log(coolnessGauge(2)); // 'You need more fridges.'
 
+// //Question 9: original function- consistently logs "Only a few? Keep having fun!" due to the first else if statement being evaluated too soon, not giving other argument values a chance to reach subsequent conditions. more importantly, the else if statements lack explicit stopping conmditions, only defining the starting condition
+// const funkoPopAddictionLevel = (numOfFunkoPops) => {
+//   if (numOfFunkoPops === 0) {
+//     console.log('No pops? Maybe try one.');
+//   } else if (numOfFunkoPops >= 1) { //checks if the given argument is greater than 1. if so, logs the message and breaks out of the loop. could be corrected by adding another condition so that it reads --> else if (numOfFunkoPops >= 1 && numOfFunkoPops <= 10) 
+//     console.log('Only a few? Keep having fun!');
+//   } else if (numOfFunkoPops > 10) {
+//     console.log('You have a problem.');
+//   } else if (numOfFunkoPops > 20) { //no way to tell at what value the condition evaluates false and breaks out before the default else statement below
+//     console.log('You need help!');
+//   } else {
+//     console.log('You need an intervention!!!');
+//   }
+// };
+
+//fixed function with explicitly defined else if statements taking an integer, numOfFunkoPops, and logging a message of support (or concern)
 const funkoPopAddictionLevel = (numOfFunkoPops) => {
   if (numOfFunkoPops === 0) {
     console.log('No pops? Maybe try one.');
-  } else if (numOfFunkoPops >= 1) { 
+  } else if (numOfFunkoPops >= 1 && numOfFunkoPops <= 10)  {
     console.log('Only a few? Keep having fun!');
-  } else if (numOfFunkoPops > 10) { 
+  } else if (numOfFunkoPops > 10 && numOfFunkoPops <= 20) {
     console.log('You have a problem.');
-  } else if (numOfFunkoPops > 20) {
+  } else if (numOfFunkoPops > 20 && numOfFunkoPops <= 30) {
     console.log('You need help!');
   } else {
     console.log('You need an intervention!!!');
-  }
+  };
 };
+
+funkoPopAddictionLevel(10) // 'Only a few? Keep having fun!'
+funkoPopAddictionLevel(30) // 'You need help!'
+funkoPopAddictionLevel(31) // 'You need an intervention!!!'
 
 const getWeatherReport = (temperature) => {
   if (temperature > 90) {
