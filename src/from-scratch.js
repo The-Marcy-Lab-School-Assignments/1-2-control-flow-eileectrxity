@@ -1,4 +1,5 @@
 //Lesson 1-2 Assignment: Control Flow by Eileen
+//mostly using console.logs as expected, rather than return statements
 
 /*Question 1: a function that takes a single argument, a number, inches; should log a message depending on the number of inches:
   0 inches - 'drought'
@@ -10,21 +11,22 @@
 //using else if statements to log a message depending on number of inches given
 const measureRain = (inches) => {
   if (inches === 0) {
-    return 'drought';
-  } else if (inches < 0 && inches < 2) {
-    return 'dry';
+    console.log('drought');
+  } else if (inches > 0 && inches < 2) { //fixed inches from being < 0 to > 0 so that values between (but not including) 0 and 2 can be captured 
+    console.log('dry');
   } else if (inches >= 2 && inches < 4) {
-    return 'average';
+    console.log('average');
   } else if (inches >= 4 && inches < 6) {
-    return 'rainy';
+    console.log('rainy');
   } else if (inches >= 6) {
-    return 'flood';
+    console.log('flood');
   };
 };
 
-console.log(measureRain(0)); // "drought"
-console.log(measureRain(3)); // "average"
-console.log(measureRain(4)); // "rainy"
+measureRain(0); // "drought"
+measureRain(1); // "dry"
+measureRain(2); // "average"
+measureRain(4); // "rainy"
 
 /*Question 2: a function that takes two arguments, a string, breed and a number, age; should log a message in the following situations:
   'snake', any age - 'Hiss hiss!'
@@ -37,27 +39,27 @@ console.log(measureRain(4)); // "rainy"
 
 const happyBirthdayPet = (breed, age) => {
   if (breed === 'snake') {
-    return 'Hiss hiss!';
+    console.log('Hiss hiss!');
   } else if (breed === 'cat') {
     if (age < 5) {
-      return 'Mew mew!';
+      console.log('Mew mew!');
     } else if (age >= 5) {
-      return 'Meow meow!'; 
+      console.log('Meow meow!'); 
     }
   } else if (breed === 'dog') {
     if (age < 5) {
-      return 'Arf Arf!';
+      console.log('Arf arf!'); //fixed return string from being 'Arf Arf' to 'Arf arf'; must be careful about capitalization!
     } else if (age >= 5 && age < 10) {
-      return 'Woof woof!'; 
+      console.log('Woof woof!'); 
     } else if (age >= 10) {
-      return 'Boof!';
+      console.log('Boof!');
     };
-  } else return 'Happy birthday!';
+  } else console.log('Happy birthday!');
 };
 
-console.log(happyBirthdayPet('snake', 3)); // "Hiss hiss!"
-console.log(happyBirthdayPet('cat', 2)); // "Mew mew!"
-console.log(happyBirthdayPet('dog', 12)); // "Boof!"
+happyBirthdayPet('snake', 3); // "Hiss hiss!"
+happyBirthdayPet('cat', 2); // "Mew mew!"
+happyBirthdayPet('dog', 6); // "Arf arf!"
 
 /*Question 3: a function that takes an argument, jsType. the type could be one of the following: a string, a number, a boolean, undefined, null, an object, an array, or NaN; should log a message in the following situations:
   any string - "That's just some text."
@@ -69,51 +71,54 @@ console.log(happyBirthdayPet('dog', 12)); // "Boof!"
   an array - "I order you to be indexed."
   NaN - "Well, now you're just showing off."
 */
+//specific conditions should be evaluated first (like special values, subtypes, and edge cases), and generic/more vague things evaluated after. just like in a guard clause, best practice is to run what should evaluates false first
 const funTypes = (jsType) => {
   // console.log(jsType) //testing for control flow understand
-  if (typeof jsType === '') {
-    return 'That\'s just some text.'; //practicing backticks
-  } else if (Number.isNaN(jsType)) { //has to be checked before number
-    return "Well, now you're just showing off.";
+  if (Number.isNaN(jsType)) { //NaN condition has to be checked before number because typeof NaN === 'number' (JS considers NaN a number)
+    console.log("Well, now you're just showing off.");
   } else if (typeof jsType === 'number') {
-    return "That's a good number.";
-  } else if (typeof jsType === 'boolean') {
-    return "To bool, or not to bool?";
+    console.log("That's a good number.");
   } else if (typeof jsType === 'undefined') {
-    return "Nothing, but I didn't set that.";
+    console.log("Nothing, but I didn't set that.");
   } else if (jsType === null) {
-    return "Nothing, and I did set that.";
-  } else if (Array.isArray(jsType)) { //array check should be before object check as an array is considered an object; ([]) doesn't work as it's considered an oject
-    return "I order you to be indexed.";
+    console.log("Nothing, and I did set that.");
+  } else if (typeof jsType === 'boolean') {
+    console.log("To bool, or not to bool?");
+  } else if (typeof jsType === 'string') { //reordered to be checked later as data type is generic. also corrected to check for JS string type rather than '' (an empty string)
+    console.log('That\'s just some text.'); //practicing backticks
+  } else if (Array.isArray(jsType)) { //like NaN before number types, arrays must be checked before object types. in JS, arrays are considered a type of objects
+    console.log("I order you to be indexed.");
   } else if (typeof jsType === 'object') {
-    return "Anybody got the key?";
+    console.log("Anybody got the key?");
   };
 };
 
-console.log(funTypes(NaN)); // "Well, now you're just showing off."
-console.log(funTypes([1,2])); // "I order you to be indexed."
-console.log(funTypes(3)); // "That's a good number."
+funTypes('hello'); // "That's just some text."
+funTypes(NaN); // "Well, now you're just showing off."
+funTypes([]); // "I order you to be indexed."
+funTypes(3); // "That's a good number."
 
 /*Question 4: a function rounder that takes two arguments: a float, float and a string, roundingSetting. roundingSetting could be only one of 3 values up, down, or honest. it should RETURN an integer based off the following value of roundingSetting:
   up - the float rounded up
   down - the float rounded down
   honest - the float rounded up or down depending on the rounding rules (< .5 round down, >= .5 round up)
 */
-
+//added a guard clause in the beginning in case roundingSetting condition is not met
 const rounder = (float, roundingSetting) => {
-  if (roundingSetting === 'up') {
-    return Math.ceil(float);
+  if (roundingSetting !== 'up' && roundingSetting !== 'down' && roundingSetting !== 'honest') {
+    return "Only round 'up', 'down', or 'honest' please c:";
+  } else if (roundingSetting === 'up') {
+    return Math.ceil(float); //round given float number up
   } else if (roundingSetting === 'down') {
-    return Math.floor(float);
+    return Math.floor(float); //round given float number down
   } else if (roundingSetting === 'honest') {
-    return Math.round(float);
-  }
-  else return "Only round 'up', 'down', or 'honest' please c:";
+    return Math.round(float); //rounding given float number according to standard mathematical rules
+  };
 };
+
 console.log(rounder(5.7, 'up')); // 6
 console.log(rounder(1.0, 'down')); // 1
-console.log(rounder(3.2, 'honest')); // 3
-console.log(rounder(3.6, 'honest')); // 4
+console.log(rounder(3.5, 'honest')); // 4
 
 /*Question 5: a function that takes a single argument: an integer, num; should log a message in the following situations:
   number is divisible by 3 - 'fizz'
@@ -124,30 +129,30 @@ console.log(rounder(3.6, 'honest')); // 4
 //using if else statements with explicit conditions provided
 const fizzBuzzish = (num) => {
   if (num % 3 === 0 && num % 5 !== 0) {
-    return "Fizz";
+    console.log("fizz");
   } else if (num % 5 === 0 && num % 3 !== 0) {
-    return "Buzz";
+    console.log("buzz");
   } else if (num % 3 === 0 && num % 5 === 0) {
-    return "FizzBuzz";
+    console.log("fizzBuzz!");
   } else {
-    return num
-  }
+    console.log(num);
+  };
 };
 
-// //alt solution a: first try - not as good as solution above
+// //alt solution a: first try - not as good as solution above due to less explicit conditions
 // const fizzBuzzish = (num) => {
 //   if (num % 3 === 0 && num % 5 === 0) {
-//     return "FizzBuzz";
+//     console.log("fizzBuzz!");
 //   } else if (num % 3 === 0) {
-//     return "Fizz";
+//     console.log("fizz");
 //   } else if (num % 5 === 0) {
-//     return "Buzz";
-//   } else return num;
+//     console.log("buzz");
+//   } else console.log(num);
 // };
 
-console.log(fizzBuzzish(15)); //returns FizzBuzz
-console.log(fizzBuzzish(3)); //returns Fizz
-console.log(fizzBuzzish(32)); //returns Buzz
+fizzBuzzish(15); //returns FizzBuzz
+fizzBuzzish(3); //returns Fizz
+fizzBuzzish(32); //returns Buzz
 
 module.exports = {
   measureRain,
