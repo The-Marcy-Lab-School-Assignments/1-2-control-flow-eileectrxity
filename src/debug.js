@@ -108,13 +108,27 @@ const getWeatherReport = (temperature) => {
 
 console.log(getWeatherReport(32)); // 'It's not too bad!'
 
+// //Question 11: original function with broken logic and failing test requiring only a single to no ternary is used
+// const returnPositiveNegativeZero = (num) => {
+//   return num < 0 //condition checking if a given argument, num is less than 0
+//     ? "Positive" //ternary statement incorrectly returns positive rather than negative if condition is truthy
+//     : num === 0 //the beginning of a nested ternary operation
+//       ? "Zero"
+//       : "Negative"; //false case if num === 0 evaualtes to falsy
+// };
+
+//fixed broken logic and refactored code to else if statement, satisfying the single to no ternary required
 const returnPositiveNegativeZero = (num) => {
-  return num < 0
-    ? "Positive"
-    : num === 0
-      ? "Zero"
-      : "Negative";
+  if (num > 0) { //corrected logical operator from less than to greater than
+    return "Positive";
+  } else if (num === 0) {
+    return  "Zero";
+  } else return "Negative";
 };
+
+console.log(returnPositiveNegativeZero()); // negative
+console.log(returnPositiveNegativeZero(0)); // zero
+console.log(returnPositiveNegativeZero(2)); // positive
 
 module.exports = {
   getRandomIntInRange,

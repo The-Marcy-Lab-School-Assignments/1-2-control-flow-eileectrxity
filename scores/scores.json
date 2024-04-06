@@ -49,14 +49,14 @@
       "DeTe3": 1,
       "DeTe4": 1,
       "DeTe5": 1,
-      "DeTe6": 0,
-      "DeTe7": 0
+      "DeTe6": 1,
+      "DeTe7": 1
     }
   },
   "humanReadable": {
     "From Scratch Tests": "5/5",
-    "finalTestScore": "FINAL SCORE: 12/14",
+    "finalTestScore": "FINAL SCORE: 14/14",
     "Modify Tests": "2/2",
-    "Debug Tests": "5/7"
+    "Debug Tests": "7/7"
   }
 }
