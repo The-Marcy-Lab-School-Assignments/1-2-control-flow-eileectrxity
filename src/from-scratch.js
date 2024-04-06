@@ -73,7 +73,7 @@ happyBirthdayPet('dog', 6); // "Arf arf!"
 */
 //specific conditions should be evaluated first (like special values, subtypes, and edge cases), and generic/more vague things evaluated after. just like in a guard clause, best practice is to run what should evaluates false first
 const funTypes = (jsType) => {
-  // console.log(jsType) //testing for control flow understand
+  // console.log(jsType) //testing for control flow understanding
   if (Number.isNaN(jsType)) { //NaN condition has to be checked before number because typeof NaN === 'number' (JS considers NaN a number)
     console.log("Well, now you're just showing off.");
   } else if (typeof jsType === 'number') {
