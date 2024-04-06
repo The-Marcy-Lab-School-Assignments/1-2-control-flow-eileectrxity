@@ -1,4 +1,4 @@
-// //original function; instead of taking 2 integers, an inclusive min and exclusive max, and returning a random number in that range, it returns a random number from 0 to the max.
+// //Question 7: original function- instead of taking 2 integers, an inclusive min and exclusive max, and returning a random number in that range, it returns a random number from 0 to the max.
 // const getRandomIntInRange = (min, max) => {
 //   if (min > max) throw new Error('min must be less than max');
 //   return Math.floor(Math.random() * max); //returns the rounded down number of ((a randomly generated number greater than 0 but less than 1 by the Math.random() method) multiplied by (the 'max' integer passed))
@@ -22,17 +22,26 @@ const getRandomIntInRange = (min, max) => {
 // };
 
 console.log(getRandomIntInRange(3,8)) //logs a random number with the lowest being 3 and the highest being 7 or max - 1
+console.log(getRandomIntInRange(5,10)) //logs a random number with the lowest being 5 and the highest being 9 or max - 1
 
+// //Question 8: original ternary function- returning the exact opposite to what we want: if given numOfFridges argument is greater than 5, returns 'You need more fridges' rather than 'You are downright chilly'
+// const coolnessGauge = (numOfFridges) => {
+//   return numOfFridges > 5 ? 'You need more fridges.' : 'You are downright chilly!';
+// };
+
+//fixed function to return the opposite string matching the scenario
 const coolnessGauge = (numOfFridges) => {
-  return numOfFridges > 5 ? 'You need more fridges.' : 'You are downright chilly!';
+  return numOfFridges > 3 ? 'You are downright chilly!' : 'You need more fridges.'; //corrected if/else order and condition to be greater than 3 rather than 5 to match the expected statements in debug.spec.js
 };
+
+console.log(coolnessGauge(2)); // 'You need more fridges.'
 
 const funkoPopAddictionLevel = (numOfFunkoPops) => {
   if (numOfFunkoPops === 0) {
     console.log('No pops? Maybe try one.');
-  } else if (numOfFunkoPops >= 1) {
+  } else if (numOfFunkoPops >= 1) { 
     console.log('Only a few? Keep having fun!');
-  } else if (numOfFunkoPops > 10) {
+  } else if (numOfFunkoPops > 10) { 
     console.log('You have a problem.');
   } else if (numOfFunkoPops > 20) {
     console.log('You need help!');
